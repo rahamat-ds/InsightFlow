@@ -7,7 +7,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("📊 InsightFlow")
+st.title("📊InsightFlow")
 
 st.subheader("Business Analytics Automation Platform")
 

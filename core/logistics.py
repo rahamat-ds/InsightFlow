@@ -60,3 +60,28 @@ RTO_REASONS = [
     "Duplicate Order"
 ]
 
+SHIPPING_MODES = {
+    "Standard": 0.60,
+    "Express": 0.30,
+    "Same Day": 0.10
+}
+
+DELIVERY_DAYS = {
+    "Standard": (4, 8),
+    "Express": (2, 4),
+    "Same Day": (0, 1)
+}
+
+
+RTO_RATE = 0.08
+RETURN_RATE = 0.05
+DISCOUNT_RANGE = (0, 40)
+
+
+FESTIVALS = [
+    "None",
+    "Diwali",
+    "Great Indian Festival",
+    "Big Billion Days",
+    "New Year Sale"
+]
