@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 .streamlit/
+# Generated datasets
+data/generated/*.csv

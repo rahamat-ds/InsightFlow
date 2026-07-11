@@ -1,5 +1,14 @@
-import pandas as pd
 
+import pandas as pd
+from utils.session import (
+    initialize_session,
+    set_dataset,
+    get_dataset
+)
+
+initialize_session()
+
+df = get_dataset()
 
 def get_kpis(df):
 

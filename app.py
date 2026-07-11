@@ -9,6 +9,12 @@ from modules.analytics import (
     top_products,
     courier_performance,
 )
+from utils.session import (
+    initialize_session,
+    set_dataset,
+)
+
+initialize_session()
 
 st.set_page_config(
     page_title="InsightFlow",
@@ -54,7 +60,9 @@ if source == "Upload CSV":
     if uploaded_file is not None:
 
         df = pd.read_csv(uploaded_file)
-
+        set_dataset(df)
+        # st.write("HOME PAGE")
+        # st.write(st.session_state.df.shape)
         st.success("CSV uploaded successfully!")
 
 # -------------------------------
@@ -76,7 +84,7 @@ elif source == "Generate Sample Dataset":
         with st.spinner("Generating synthetic retail dataset..."):
 
             df = generate_dataset(rows)
-
+            set_dataset(df)
         st.success(f"Generated {rows:,} orders successfully!")
 
 # -------------------------------
