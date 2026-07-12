@@ -7,14 +7,13 @@ from utils.session import (
 )
 st.set_page_config(
     page_title="Dashboard",
-    page_icon="📈",
+    page_icon="📊",
     layout="wide"
 )
-st.title("📈Executive Dashboard")
+st.title("📊Executive Dashboard")
 
 initialize_session()
 df = get_dataset()
-st.write(df)
 
 from modules.analytics import (
     get_kpis,
@@ -29,11 +28,10 @@ from modules.analytics import (
 )
 
 
-
 if df is None:
 
     st.warning(
-        "Please upload or generate a dataset from the Home page."
+        "⚠️Please upload or generate a dataset from the Home page."
     )
     st.stop()
 

@@ -101,10 +101,75 @@ def fill_missing(df):
     return df
 
 
+
 def clean_dataset(df):
+
+    report = {}
+
+    # ----------------------------
+    # Initial Stats
+    # ----------------------------
+
+    report["Rows Before"] = len(df)
+
+    report["Missing Before"] = int(df.isna().sum().sum())
+
+    report["Duplicates Before"] = int(df.duplicated().sum())
+
+    # ----------------------------
+    # Remove Duplicates
+    # ----------------------------
+
     df = remove_duplicates(df)
+
+    report["Rows After"] = len(df)
+
+    report["Duplicates Removed"] = (
+        report["Rows Before"]
+        - report["Rows After"]
+    )
+
+    # ----------------------------
+    # Trim Text
+    # ----------------------------
+
+    text_columns = len(
+        df.select_dtypes(include="object").columns
+    )
+
     df = trim_text(df)
+
+    report["Text Columns Cleaned"] = text_columns
+
+    # ----------------------------
+    # Convert Dates
+    # ----------------------------
+
+    date_columns = 0
+
+    for col in [
+        "order_date",
+        "dispatch_date",
+        "delivery_date"
+    ]:
+
+        if col in df.columns:
+            date_columns += 1
+
     df = convert_dates(df)
+
+    report["Date Columns Converted"] = date_columns
+
+    # ----------------------------
+    # Fill Missing
+    # ----------------------------
+
+    before = int(df.isna().sum().sum())
+
     df = fill_missing(df)
 
-    return df
+    after = int(df.isna().sum().sum())
+
+    report["Missing Values Filled"] = before - after
+
+    return df, report

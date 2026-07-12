@@ -118,4 +118,53 @@ def rto_reasons(df):
         .sort_values("size", ascending=False)
     )
 
+def category_performance(df):
 
+    return (
+        df.groupby("category", as_index=False)
+        .agg(
+            Revenue=("revenue", "sum"),
+            Profit=("profit", "sum"),
+            Orders=("category", "count"),
+            Quantity=("quantity", "sum"),
+        )
+        .sort_values(
+            "Revenue",
+            ascending=False
+        )
+    )
+
+def region_performance(df):
+
+    return (
+        df.groupby("region", as_index=False)
+        .agg(
+            Revenue=("revenue", "sum"),
+            Profit=("profit", "sum"),
+            Orders=("region", "count"),
+            Quantity=("quantity", "sum"),
+        )
+        .sort_values(
+            "Revenue",
+            ascending=False
+        )
+    )
+
+def courier_performance(df):
+
+    courier_df = (
+        df.groupby("courier", as_index=False)
+        .agg(
+            Orders=("courier", "count"),
+            Revenue=("revenue", "sum"),
+            Profit=("profit", "sum"),
+            RTO=("rto", "mean"),
+        )
+    )
+
+    courier_df["RTO"] *= 100
+
+    return courier_df.sort_values(
+        "Revenue",
+        ascending=False
+    )

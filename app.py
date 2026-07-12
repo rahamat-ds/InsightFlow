@@ -22,7 +22,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("InsightFlow")
+st.title("InsightFlow💡")
 st.subheader("Business Analytics Automation Platform")
 
 st.write(
@@ -61,8 +61,6 @@ if source == "Upload CSV":
 
         df = pd.read_csv(uploaded_file)
         set_dataset(df)
-        # st.write("HOME PAGE")
-        # st.write(st.session_state.df.shape)
         st.success("CSV uploaded successfully!")
 
 # -------------------------------
@@ -92,7 +90,7 @@ elif source == "Generate Sample Dataset":
 # -------------------------------
 if df is not None:
     kpis = get_kpis(df)
-    st.subheader("Executive Dashboard")
+    st.subheader("Brief Overview")
 
     c1, c2, c3, c4, c5 = st.columns(5)
 
