@@ -16,7 +16,6 @@ from modules.cleaning import (
 
 st.set_page_config(
     page_title="Data Cleaning",
-    page_icon="🧹",
     layout="wide"
 )
 st.title("🧹Data Cleaning")

@@ -7,7 +7,6 @@ from utils.session import (
 )
 st.set_page_config(
     page_title="Dashboard",
-    page_icon="📊",
     layout="wide"
 )
 st.title("📊Executive Dashboard")
@@ -138,7 +137,6 @@ left, right = st.columns(2)
 with left:
 
     top_df = top_products(filtered_df)
-
     fig = px.bar(
         top_df,
         x="revenue",
@@ -146,16 +144,13 @@ with left:
         orientation="h",
         title="Top 10 Products"
     )
-
     st.plotly_chart(
         fig,
         use_container_width=True
     )
 
 with right:
-
     monthly_df = monthly_revenue(filtered_df)
-
     fig = px.line(
     monthly_df,
     x="Month",
@@ -163,45 +158,41 @@ with right:
     markers=True,
     title="Monthly Revenue Trend"
     )
-
     fig.update_layout(
         template="plotly_white",
         height=450,
         title_x=0.5
     )
-
     st.plotly_chart(
         fig,
         use_container_width=True
     )
 st.divider()
 
-region_rto = rto_by_region(filtered_df)
+left, right = st.columns(2)
+with left:
+    region_rto = rto_by_region(filtered_df)
+    fig = px.bar(
+        region_rto,
+        x="region",
+        y="RTO",
+        text="RTO",
+        title="RTO Rate by Region"
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
-fig = px.bar(
-    region_rto,
-    x="region",
-    y="RTO",
-    text="RTO",
-    title="RTO Rate by Region"
-)
-
-
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
-
-reason_df = rto_reasons(filtered_df)
-
-fig = px.bar(
-    reason_df,
-    x="rto_reason",
-    y="size",
-    title="Top RTO Reasons"
-)
-
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
+with right:
+    reason_df = rto_reasons(filtered_df)
+    fig = px.bar(
+        reason_df,
+        x="rto_reason",
+        y="size",
+        title="Top RTO Reasons"
+    )
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
